@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import AdminDashboard from './components/AdminDashboard';
+import WeatherForecast from './components/WeatherForecast';
 
 export default function App() {
     const [user, setUser] = useState(null);
-    const [view, setView] = useState('login');
 
     useEffect(() => {
         const savedUser = localStorage.getItem('user');
@@ -20,17 +22,93 @@ export default function App() {
         setUser(null);
     };
 
-    if (user) {
-        return <Dashboard user={user} onLogout={handleLogout} />;
-    }
-
     return (
-        <div>
-            {view === 'login' ? (
-                <Login onLoginSuccess={(u) => setUser(u)} onSwitchToRegister={() => setView('register')} />
-            ) : (
-                <Register onSwitchToLogin={() => setView('login')} />
-            )}
-        </div>
+        <Router>
+            <Routes>
+                {/* Default route */}
+                <Route 
+                    path="/" 
+                    element={
+                        user ? (
+                            user.role === 'Admin' ? (
+                                <Navigate to="/admin" replace />
+                            ) : (
+                                <Navigate to="/dashboard" replace />
+                            )
+                        ) : (
+                            <Navigate to="/login" replace />
+                        )
+                    } 
+                />
+
+                {/* Login Route */}
+                <Route 
+                    path="/login" 
+                    element={
+                        user ? (
+                            <Navigate to="/" replace />
+                        ) : (
+                            <Login 
+                                onLoginSuccess={(u) => setUser(u)} 
+                                onSwitchToRegister={() => window.location.href = '/register'} 
+                            />
+                        )
+                    } 
+                />
+
+                {/* Register Route */}
+                <Route 
+                    path="/register" 
+                    element={
+                        <Register 
+                            onSwitchToLogin={() => window.location.href = '/login'} 
+                        />
+                    } 
+                />
+
+                {/* Farmer Dashboard Route */}
+                <Route 
+                    path="/dashboard" 
+                    element={
+                        user ? (
+                            <Dashboard user={user} onLogout={handleLogout} />
+                        ) : (
+                            <Navigate to="/login" replace />
+                        )
+                    } 
+                />
+
+                {/* Dedicated OpenWeatherMap Weather Route */}
+                <Route 
+                    path="/weather" 
+                    element={
+                        user ? (
+                            <div className="min-h-screen bg-slate-950 p-6">
+                                <div className="max-w-6xl mx-auto">
+                                    <WeatherForecast userId={user.id} />
+                                </div>
+                            </div>
+                        ) : (
+                            <Navigate to="/login" replace />
+                        )
+                    } 
+                />
+
+                {/* Admin Portal Route */}
+                <Route 
+                    path="/admin" 
+                    element={
+                        user && user.role === 'Admin' ? (
+                            <AdminDashboard user={user} onLogout={handleLogout} />
+                        ) : (
+                            <Navigate to="/login" replace />
+                        )
+                    } 
+                />
+
+                {/* Fallback route */}
+                <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+        </Router>
     );
 }

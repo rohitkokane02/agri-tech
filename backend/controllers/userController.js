@@ -2,8 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-
-const register = async (req, res) => {
+const registerUser = async (req, res) => {
     try {
         const { name, email, password, phone, address, role } = req.body;
 
@@ -26,27 +25,19 @@ const register = async (req, res) => {
         });
 
         await newUser.save();
-        res.status(201).json({ 
-            message: 'User registered successfully!' 
-        });
+        res.status(201).json({ message: 'User registered successfully!' });
     } catch (error) {
-        res.status(500).json({ 
-            message: 'Server error during registration',
-            error: error.message 
-        });
+        res.status(500).json({ message: 'Server error during registration', error: error.message });
     }
 };
 
-
-const login = async (req, res) => {
+const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ 
-                message: 'Invalid email or password.' 
-            });
+            return res.status(400).json({ message: 'Invalid email or password.' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -74,43 +65,24 @@ const login = async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(500).json({ 
-            message: 'Server error during login',
-            error: error.message 
-        });
+        res.status(500).json({ message: 'Server error during login', error: error.message });
     }
 };
 
-const getAllUsers = async (req, res) => {
+const updateProfile = async (req, res) => {
     try {
-        const users = await User.find().select('-password').sort({ createdAt: -1 });
-        res.status(200).json(users);
+        const { userId, name, phone, address } = req.body;
+        const targetId = userId || req.user?.id;
+        const updatedUser = await User.findByIdAndUpdate(
+            targetId,
+            { name, phone, address },
+            { new: true }
+        ).select('-password');
+
+        res.status(200).json({ message: 'Profile updated successfully', user: updatedUser });
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching users', error: error.message });
+        res.status(500).json({ message: 'Error updating profile', error: error.message });
     }
 };
 
-const toggleApproveUser = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const user = await User.findById(id);
-        if (!user) return res.status(404).json({ message: 'User not found' });
-        user.isApproved = !user.isApproved;
-        await user.save();
-        res.status(200).json({ message: 'User status updated', user });
-    } catch (error) {
-        res.status(500).json({ message: 'Error updating user status', error: error.message });
-    }
-};
-
-const deleteUser = async (req, res) => {
-    try {
-        const { id } = req.params;
-        await User.findByIdAndDelete(id);
-        res.status(200).json({ message: 'User deleted successfully' });
-    } catch (error) {
-        res.status(500).json({ message: 'Error deleting user', error: error.message });
-    }
-};
-
-module.exports = { register, login, getAllUsers, toggleApproveUser, deleteUser };
+module.exports = { registerUser, loginUser, updateProfile };

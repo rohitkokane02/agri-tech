@@ -1,13 +1,20 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Agri-Tech Platform Express & MongoDB Backend Server",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node index.js",
+    "dev": "node index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "agri-tech",
+    "express",
+    "mongoose",
+    "mongodb",
+    "cors",
+    "dotenv"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

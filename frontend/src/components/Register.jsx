@@ -7,12 +7,15 @@ export default function Register({ onSwitchToLogin }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
+    const [role, setRole] = useState('Farmer');
     const [message, setMessage] = useState('');
 
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const res = await API.post('/auth/register', { name, email, password });
+            const res = await API.post('/auth/register', { name, email, password, phone, address, role });
             setMessage(res.data.message);
             setTimeout(() => onSwitchToLogin(), 1500); // Switch to login after success
         } catch (err) {
@@ -36,7 +39,7 @@ export default function Register({ onSwitchToLogin }) {
                         Join KisanLog 🌱
                     </h2>
                     <p className="text-sm font-medium text-emerald-400/80 mt-1 flex items-center justify-center gap-1.5">
-                        <ShieldCheck className="w-4 h-4" /> Start Monitoring Crops & Soil Health
+                        <ShieldCheck className="w-4 h-4" /> Start Monitoring Crops & Farm Activities
                     </p>
                 </div>
 
@@ -89,6 +92,48 @@ export default function Register({ onSwitchToLogin }) {
                                 className="w-full pl-10 pr-4 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none transition-all duration-200 hover:border-slate-600" 
                             />
                         </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                                Phone Number
+                            </label>
+                            <input 
+                                type="tel" 
+                                value={phone} 
+                                onChange={(e) => setPhone(e.target.value)} 
+                                placeholder="+91 9876543210"
+                                className="w-full px-3 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none transition-all duration-200 hover:border-slate-600" 
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                                Address / Location
+                            </label>
+                            <input 
+                                type="text" 
+                                value={address} 
+                                onChange={(e) => setAddress(e.target.value)} 
+                                placeholder="District, State"
+                                className="w-full px-3 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none transition-all duration-200 hover:border-slate-600" 
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                            Account Role
+                        </label>
+                        <select 
+                            value={role} 
+                            onChange={(e) => setRole(e.target.value)} 
+                            className="w-full px-4 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-slate-100 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                        >
+                            <option value="Farmer">🌾 Farmer (Crop & Farm Management)</option>
+                            <option value="Admin">🛠️ Admin (Platform Management & Control)</option>
+                        </select>
                     </div>
 
                     <div>

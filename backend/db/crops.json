@@ -1,0 +1,42 @@
+[
+  {
+    "id": "crop_01",
+    "cropName": "Wheat (Gehun)",
+    "cropType": "Rabi",
+    "durationDays": 120,
+    "sowingWindow": "November - December",
+    "harvestWindow": "March - April",
+    "commonPests": ["Yellow Rust", "Wheat Aphids", "Termites"],
+    "recommendedCare": "Maintain soil moisture at crown root initiation and grain filling stages."
+  },
+  {
+    "id": "crop_02",
+    "cropName": "Rice (Paddy)",
+    "cropType": "Kharif",
+    "durationDays": 140,
+    "sowingWindow": "June - July",
+    "harvestWindow": "October - November",
+    "commonPests": ["Stem Borer", "Brown Plant Hopper", "Leaf Folder"],
+    "recommendedCare": "Keep 2-5 cm standing water during tillering stage."
+  },
+  {
+    "id": "crop_03",
+    "cropName": "Sugarcane",
+    "cropType": "Cash Crop",
+    "durationDays": 360,
+    "sowingWindow": "October - February",
+    "harvestWindow": "December - March",
+    "commonPests": ["Early Shoot Borer", "Top Borer", "Pyrilla"],
+    "recommendedCare": "Perform earthing up at 45-60 days to prevent plant lodging."
+  },
+  {
+    "id": "crop_04",
+    "cropName": "Cotton",
+    "cropType": "Kharif",
+    "durationDays": 160,
+    "sowingWindow": "May - June",
+    "harvestWindow": "November - January",
+    "commonPests": ["Pink Bollworm", "Whitefly", "Jassids"],
+    "recommendedCare": "Install pheromone traps and avoid excess nitrogen."
+  }
+]
