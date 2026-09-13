@@ -11,6 +11,7 @@ const getResourceLogs = async (req, res) => {
     }
 };
 
+
 const createResourceLog = async (req, res) => {
     try {
         const { userId, farmId, resourceType, quantity, unit, cost, notes } = req.body;

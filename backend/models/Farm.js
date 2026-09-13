@@ -11,7 +11,7 @@ const farmSchema = new mongoose.Schema({
         required: true
     },
     farmSize: {
-        type: String, // e.g., "5 Acres" or "10 Hectares"
+        type: String, 
         required: true
     },
     location: {

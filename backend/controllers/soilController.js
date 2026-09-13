@@ -1,4 +1,4 @@
-const Soil = require('../models/Soil');
+const Soil = require('../models/soil');
 
 const addSoilReport = async (req, res) => {
     try {
@@ -33,5 +33,6 @@ const getSoilReports = async (req, res) => {
         res.status(500).json({ message: 'Error fetching soil reports', error: error.message });
     }
 };
+
 
 module.exports = { addSoilReport, getSoilReports };

@@ -12,6 +12,7 @@ const addWeather = async (req, res) => {
             condition,
             userId: req.user.id 
         });
+        
 
         await newWeather.save();
         res.status(201).json({ message: 'Weather record added successfully!', newWeather });

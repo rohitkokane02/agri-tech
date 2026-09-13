@@ -25,7 +25,6 @@ export default function App() {
     return (
         <Router>
             <Routes>
-                {/* Default route */}
                 <Route 
                     path="/" 
                     element={
@@ -41,7 +40,6 @@ export default function App() {
                     } 
                 />
 
-                {/* Login Route */}
                 <Route 
                     path="/login" 
                     element={
@@ -56,7 +54,6 @@ export default function App() {
                     } 
                 />
 
-                {/* Register Route */}
                 <Route 
                     path="/register" 
                     element={
@@ -66,7 +63,6 @@ export default function App() {
                     } 
                 />
 
-                {/* Farmer Dashboard Route */}
                 <Route 
                     path="/dashboard" 
                     element={
@@ -78,7 +74,6 @@ export default function App() {
                     } 
                 />
 
-                {/* Dedicated OpenWeatherMap Weather Route */}
                 <Route 
                     path="/weather" 
                     element={
@@ -94,7 +89,6 @@ export default function App() {
                     } 
                 />
 
-                {/* Admin Portal Route */}
                 <Route 
                     path="/admin" 
                     element={
@@ -106,7 +100,6 @@ export default function App() {
                     } 
                 />
 
-                {/* Fallback route */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </Router>

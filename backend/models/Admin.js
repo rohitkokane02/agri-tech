@@ -8,6 +8,7 @@ const AdminSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }
-});
+}); 
+
 
 module.exports = mongoose.model('Admin', AdminSchema);

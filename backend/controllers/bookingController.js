@@ -47,4 +47,5 @@ const cancelBooking = async (req, res) => {
     }
 };
 
+
 module.exports = { getBookings, createBooking, cancelBooking };

@@ -21,7 +21,7 @@ const resourceUsageSchema = new mongoose.Schema({
     },
     unit: {
         type: String,
-        required: true // Liters, Bags, Kg, Hours
+        required: true 
     },
     cost: {
         type: Number,
@@ -36,5 +36,6 @@ const resourceUsageSchema = new mongoose.Schema({
         default: ''
     }
 });
+
 
 module.exports = mongoose.model('ResourceUsage', resourceUsageSchema);

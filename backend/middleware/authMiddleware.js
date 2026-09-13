@@ -5,7 +5,6 @@ const authMiddleware = (req, res, next) => {
     const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : req.headers['x-auth-token'];
 
     if (!token) {
-        // Fallback for public development access if no token header provided
         return next();
     }
 
@@ -22,7 +21,7 @@ const requireAdmin = (req, res, next) => {
     if (req.user && req.user.role === 'Admin') {
         return next();
     }
-    // Allow pass for demo if admin query header is sent
+    
     if (req.headers['x-admin-request'] === 'true') {
         return next();
     }

@@ -32,4 +32,5 @@ const pestAlertSchema = new mongoose.Schema({
     }
 });
 
+
 module.exports = mongoose.model('PestAlert', pestAlertSchema);

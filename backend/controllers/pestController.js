@@ -35,6 +35,7 @@ const defaultAlerts = [
     }
 ];
 
+
 const getPestAlerts = async (req, res) => {
     try {
         let alerts = await PestAlert.find().sort({ dateReported: -1 });

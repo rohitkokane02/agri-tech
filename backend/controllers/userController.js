@@ -69,6 +69,7 @@ const loginUser = async (req, res) => {
     }
 };
 
+
 const updateProfile = async (req, res) => {
     try {
         const { userId, name, phone, address } = req.body;

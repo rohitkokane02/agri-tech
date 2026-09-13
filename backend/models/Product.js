@@ -7,7 +7,7 @@ const productSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        required: true // Seeds, Fertilizers, Pesticides, Equipment, Services
+        required: true 
     },
     price: {
         type: Number,

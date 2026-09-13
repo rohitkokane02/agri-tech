@@ -31,4 +31,6 @@ const soilSchema = new mongoose.Schema({
     }
 });
 
+
+
 module.exports = mongoose.model('Soil', soilSchema);

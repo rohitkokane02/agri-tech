@@ -10,6 +10,7 @@ const seedProducts = [
     { name: 'Combine Harvester Rental Service', category: 'Services', price: 2500, unit: 'per acre', description: 'Automated harvesting & threshing machinery service.' }
 ];
 
+
 const getProducts = async (req, res) => {
     try {
         let products = await Product.find();

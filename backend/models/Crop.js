@@ -16,7 +16,7 @@ const cropSchema = new mongoose.Schema({
     },
     cropType: {
         type: String,
-        required: true // e.g. Kharif, Rabi, Zaid, Cash Crop, Grain, Vegetable
+        required: true 
     },
     sowingTime: {
         type: Date,
@@ -28,7 +28,7 @@ const cropSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: 'Active' // Active, Harvested, Planned
+        default: 'Active' 
     },
     createdAt: {
         type: Date,

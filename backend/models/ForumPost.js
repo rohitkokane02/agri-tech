@@ -53,4 +53,5 @@ const forumPostSchema = new mongoose.Schema({
     }
 });
 
+
 module.exports = mongoose.model('ForumPost', forumPostSchema);
